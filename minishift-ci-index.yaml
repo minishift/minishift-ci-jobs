@@ -68,10 +68,10 @@
               exit $rtn_code
 
 - project:
-    name: minishift
+    name: atomicapp
     jobs:
       - '{git_repo}':
           git_repo: minishift-centos-iso
           ci_project: '{name}'
-          ci_cmd: '/bin/bash run_ci_build.sh'
+          ci_cmd: '/bin/bash centos_ci.sh'
           timeout: '20m'
