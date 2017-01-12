@@ -16,6 +16,8 @@
               admin-list:
                   - budhrg
                   - hferentschik
+                  - LalatenduMohanty
+                  - praveenkumar
               cron: '* * * * *'
               github-hooks: false
               permit-all: false
