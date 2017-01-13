@@ -77,3 +77,8 @@
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           timeout: '20m'
+      - '{git_repo}':
+          git_repo: minishift-b2d-iso
+          ci_project: '{name}'
+          ci_cmd: '/bin/bash centos_ci.sh'
+          timeout: '20m'
