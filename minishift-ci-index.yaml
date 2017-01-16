@@ -39,7 +39,7 @@
     name: '{git_repo}'
     description: |
         {jobdescription}
-    node: '{ci_project}'
+    node: 'minishift'
     concurrent: true
     properties:
         - github:
