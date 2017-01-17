@@ -70,7 +70,7 @@
               exit $rtn_code
 
 - project:
-    name: atomicapp
+    name: minishift
     jobs:
       - '{git_repo}':
           git_repo: minishift-centos-iso
