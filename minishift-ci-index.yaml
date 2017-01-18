@@ -73,6 +73,11 @@
     name: minishift
     jobs:
       - '{git_repo}':
+          git_repo: minishift
+          ci_project: '{name}'
+          ci_cmd: '/bin/bash centos_ci.sh'
+          timeout: '20m'
+      - '{git_repo}':
           git_repo: minishift-centos-iso
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
@@ -81,4 +86,4 @@
           git_repo: minishift-b2d-iso
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
-          timeout: '30m'
+          timeout: '20m'
