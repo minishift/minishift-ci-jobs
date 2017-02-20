@@ -23,6 +23,8 @@
                   - LalatenduMohanty
                   - praveenkumar
                   - gbraad
+                  - thatdocslady
+                  - Preeticp
               cron: '* * * * *'
               github-hooks: false
               permit-all: false
