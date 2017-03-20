@@ -114,6 +114,7 @@
 - project:
     name: minishift
     jobs:
+      # Master builds
       - '{git_repo}':
           git_repo: minishift
           ci_project: '{name}'
@@ -129,7 +130,7 @@
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           timeout: '30m'
-
+      # PR builds
       - '{git_repo}-pr':
           git_repo: minishift
           ci_project: '{name}'
@@ -145,3 +146,9 @@
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           timeout: '30m'
+      # Docs builds
+      - '{git_repo}-docs':
+          git_repo: minishift
+          ci_project: '{name}'
+          ci_cmd: '/bin/bash centos_ci.sh'
+          timeout: '20m'
