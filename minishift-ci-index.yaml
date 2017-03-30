@@ -121,8 +121,12 @@
         - github:
             url: https://github.com/{git_organization}/{git_repo}/
     scm:
-        - git-scm:
-            git_url: https://{github_user}@github.com/{git_organization}/{git_repo}.git
+        - git:
+            url: https://{github_user}@github.com/{git_organization}/{git_repo}.git
+            git-tool: ci-git
+            shallow_clone: false
+            branches:
+                - master
     builders:
         - shell: |
               # testing out the cico client
