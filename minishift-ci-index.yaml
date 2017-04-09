@@ -63,7 +63,7 @@
             # testing out the cico client
             set +e
             export CICO_API_KEY=$(cat ~/duffy.key)
-            read CICO_hostname CICO_ssid <<< $(cico node get -f value -c ip_address -c comment)
+            read CICO_hostname CICO_ssid <<< $(cico node get -f value -c ip_address -c comment --retry-count 6)
             sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
             ssh_cmd="ssh $sshopts $CICO_hostname"
             env > jenkins-env
@@ -96,7 +96,7 @@
               # testing out the cico client
               set +e
               export CICO_API_KEY=$(cat ~/duffy.key)
-              read CICO_hostname CICO_ssid <<< $(cico node get -f value -c ip_address -c comment)
+              read CICO_hostname CICO_ssid <<< $(cico node get -f value -c ip_address -c comment --retry-count 6)
               sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
               ssh_cmd="ssh $sshopts $CICO_hostname"
               env > jenkins-env
@@ -132,7 +132,7 @@
               # testing out the cico client
               set +e
               export CICO_API_KEY=$(cat ~/duffy.key)
-              read CICO_hostname CICO_ssid <<< $(cico node get -f value -c ip_address -c comment)
+              read CICO_hostname CICO_ssid <<< $(cico node get -f value -c ip_address -c comment --retry-count 6)
               sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
               ssh_cmd="ssh $sshopts $CICO_hostname"
               env > jenkins-env
