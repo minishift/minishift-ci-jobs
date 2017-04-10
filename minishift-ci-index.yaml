@@ -81,7 +81,7 @@
     name: '{git_repo}-pr'
     description: |
         {jobdescription}
-    node: '{ci_project}'
+    node: 'minishift'
     concurrent: true
     properties:
         - github:
