@@ -164,6 +164,36 @@
                 exit 1
               fi
 
+- job-template:
+    name: '{git_repo}-test-job'
+    description: |
+        'Minishift test job! Managed by Jenkins Job Builder, do not edit manually! Update via https://github.com/minishift/minishift-ci-jobs.'
+    node: '{ci_project}'
+    parameters:
+        - string:
+            name: COMMIT_ID
+            default: ""
+            description: "Commit ID used for a particular release"
+    builders:
+      - shell: |
+              # testing out the cico client
+              set +e
+              export CICO_API_KEY=$(cat ~/duffy.key)
+              read CICO_hostname CICO_ssid <<< $(cico node get -f value -c ip_address -c comment --retry-count 12)
+
+              if [[ $CICO_hostname != "" ]]; then
+                sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
+                ssh_cmd="ssh $sshopts $CICO_hostname"
+                env > jenkins-env
+
+                echo "Hello, checking parameter commit_id $COMMIT_ID"
+
+                exit 0
+              else
+                echo "CICO: Unable to get Node.";
+                exit 1
+              fi
+
 - project:
     name: minishift
     jobs:
@@ -205,3 +235,7 @@
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           timeout: '30m'
+      # Test build
+      - '{git_repo}-test-job':
+          ci_project: '{name}'
+          timeout: '20m'
