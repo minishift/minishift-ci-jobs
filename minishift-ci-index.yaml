@@ -15,6 +15,9 @@
             - text:
                 credential-id: 8a23a7b8-13e4-4685-a628-a8cbebce6728
                 variable: API_TOKEN
+            - text:
+                credential-id: 9d49c592-fdf1-4dbb-82be-4503b17198d8
+                variable: GITHUB_TOKEN
 
 - trigger:
     name: githubprb
