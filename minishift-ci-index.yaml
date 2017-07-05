@@ -3,7 +3,7 @@
     timeout: '15m'
     jobdescription: 'Managed by Jenkins Job Builder, do not edit manually! Update via https://github.com/minishift/minishift-ci-jobs'
     git_organization: minishift
-    github_user: budhrg
+    github_user: minishift-bot
     wrappers:
         - ansicolor
         - workspace-cleanup
@@ -24,6 +24,7 @@
     triggers:
         - github-pull-request:
               admin-list:
+                  - minishift-bot
                   - budhrg
                   - hferentschik
                   - LalatenduMohanty
@@ -178,10 +179,10 @@
     concurrent: true
     properties:
         - github:
-            url: https://github.com/budhrg/{git_repo}/
+            url: https://github.com/minishift-bot/{git_repo}/
     scm:
         - git:
-            url: https://{github_user}@github.com/budhrg/{git_repo}.git
+            url: https://{github_user}@github.com/minishift-bot/{git_repo}.git
             git-tool: ci-git
             shallow_clone: false
             branches:
