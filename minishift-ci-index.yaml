@@ -192,10 +192,6 @@
             name: RELEASE_VERSION
             default: ""
             description: "Release version to be released (Eg. 1.0.0)"
-        - string:
-            name: MILESTONE_ID
-            default: ""
-            description: "Milestone ID to be required to generate the content for release note. (Eg. 10)"
     builders:
       - shell: |
             # testing out the cico client
