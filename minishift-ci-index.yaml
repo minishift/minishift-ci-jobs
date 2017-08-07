@@ -179,10 +179,10 @@
     concurrent: true
     properties:
         - github:
-            url: https://github.com/minishift-bot/{git_repo}/
+            url: https://github.com/minishift/{git_repo}/
     scm:
         - git:
-            url: https://{github_user}@github.com/minishift-bot/{git_repo}.git
+            url: https://{github_user}@github.com/minishift/{git_repo}.git
             git-tool: ci-git
             shallow_clone: false
             branches:
