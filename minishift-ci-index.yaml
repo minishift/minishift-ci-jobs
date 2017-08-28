@@ -120,9 +120,11 @@
                 && rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:payload \
                 && /usr/bin/timeout {timeout} $ssh_cmd -t "cd payload && {ci_cmd}"
                 rtn_code=$?
-                cico node done $CICO_ssid
-                if [[ $rtn_code -eq 124 ]]; then
-                   echo "BUILD TIMEOUT";
+                if [ $rtn_code -eq 0 ]; then
+                  cico node done $CICO_ssid
+                else
+                  # fail mode gives us 12 hrs to debug the machine
+                  curl "http://admin.ci.centos.org:8080/Node/fail?key=$CICO_API_KEY&ssid=$CICO_ssid"
                 fi
                 exit $rtn_code
               else
