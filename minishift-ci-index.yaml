@@ -33,7 +33,7 @@
                   - thatdocslady
                   - Preeticp
               cron: '* * * * *'
-              github-hooks: false
+              github-hooks: true
               permit-all: false
               trigger-phrase: '.*\[test\].*'
               allow-whitelist-orgs-as-admins: true
