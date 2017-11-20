@@ -275,7 +275,7 @@
           git_repo: minishift
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
-          timeout: '60m'
+          timeout: '120m'
       # Test build
       - '{git_repo}-test-job':
           git_repo: minishift
