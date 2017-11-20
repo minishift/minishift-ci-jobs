@@ -30,8 +30,10 @@
                   - LalatenduMohanty
                   - praveenkumar
                   - gbraad
-                  - thatdocslady
-                  - Preeticp
+                  - anjannath
+                  - agajdosi
+                  - amitkrout
+                  - robin-owen
               cron: '* * * * *'
               github-hooks: true
               permit-all: false
