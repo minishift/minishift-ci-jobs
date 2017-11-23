@@ -150,6 +150,15 @@
             shallow_clone: false
             branches:
                 - master
+    parameters:
+        - string:
+            name: BRANCH
+            default: "master"
+            description: "Branch name"
+        - string:
+            name: REPO
+            default: https://github.com/{git_organization}/{git_repo}/
+            description: "Repo URL"
     builders:
         - shell: |
               # testing out the cico client
