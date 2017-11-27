@@ -245,7 +245,7 @@
             branches:
                 - master
     triggers:
-        - timed: '@midnight'
+        - timed: '0 0 * * *'
     builders:
         - shell: |
               # testing out the cico client
