@@ -246,6 +246,14 @@
                 - master
     triggers:
         - timed: '0 0 * * *'
+    publishers:
+        - email-ext:
+            recipients: lmohanty@redhat.com, gbraad@redhat.com, hferents@redhat.com, prkumar@redhat.com, bgurung@redhat.com, agajdosi@redhat.com, arout@redhat.com
+            content-type: text
+            subject: Minishift nightly build ${BUILD_NUMBER}
+            body: "The build has finished. Build URL: ${BUILD_URL}"
+            failure: true
+            success: true
     builders:
         - shell: |
               # testing out the cico client
