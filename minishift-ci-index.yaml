@@ -231,7 +231,7 @@
             fi
 
 - job-template:
-    name: '{git_repo}-nightly'
+    name: '{git_repo}-nightly-{iso_url}'
     description: |
         'Minishift nighly job! Managed by Jenkins Job Builder, do not edit manually! Update via https://github.com/minishift/minishift-ci-jobs.'
     node: '{ci_project}'
@@ -354,10 +354,23 @@
           ci_cmd: '/bin/bash centos_ci.sh'
           timeout: '120m'
       # Nightly build running @ midnight daily
-      - '{git_repo}-nightly':
+      - '{git_repo}-nightly-{iso_url}':
           git_repo: minishift
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
+          iso_url: 'b2d'
+          timeout: '120m'
+      - '{git_repo}-nightly-{iso_url}':
+          git_repo: minishift
+          ci_project: '{name}'
+          ci_cmd: '/bin/bash centos_ci.sh'
+          iso_url: 'minikube'
+          timeout: '120m'
+      - '{git_repo}-nightly-{iso_url}':
+          git_repo: minishift
+          ci_project: '{name}'
+          ci_cmd: '/bin/bash centos_ci.sh'
+          iso_url: 'centos'
           timeout: '120m'
       # TODO: Need to be removed
       - '{git_repo}-nightly-job':
