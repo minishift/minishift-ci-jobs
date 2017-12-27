@@ -252,7 +252,7 @@
             content-type: text
             subject: Minishift nightly build $BUILD_NUMBER
             body: "The build has finished. Build URL: $BUILD_URL"
-            failure: true
+            failure: {notify_build}
     builders:
         - shell: |
               # testing out the cico client
@@ -277,24 +277,6 @@
                   echo "CICO: Unable to get Node.";
                   exit 1
               fi
-
-- job-template:
-    name: '{git_repo}-nightly-job'
-    description: |
-        'Minishift nighly job which need to be deleted! Managed by Jenkins Job Builder, do not edit manually! Update via https://github.com/minishift/minishift-ci-jobs.'
-    node: '{ci_project}'
-    properties:
-        - github:
-            url: https://github.com/{git_organization}/{git_repo}/
-    scm:
-        - git:
-            url: https://github.com/minishift/minishift.git
-            shallow_clone: true
-            branches:
-                - master
-    builders:
-        - shell: |
-              echo "Nothing to do here!"
 
 - job-template:
     name: '{git_repo}-test-job'
@@ -360,24 +342,21 @@
           ci_cmd: '/bin/bash centos_ci.sh'
           iso_url: 'b2d'
           timeout: '120m'
+          notify_build: true
       - '{git_repo}-nightly-{iso_url}':
           git_repo: minishift
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           iso_url: 'minikube'
           timeout: '120m'
+          notify_build: false
       - '{git_repo}-nightly-{iso_url}':
           git_repo: minishift
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           iso_url: 'centos'
           timeout: '120m'
-      # TODO: Need to be removed
-      - '{git_repo}-nightly-job':
-          git_repo: minishift
-          ci_project: '{name}'
-          ci_cmd: '/bin/bash centos_ci.sh'
-          timeout: '120m'
+          notify_build: true
       # Test build
       - '{git_repo}-test-job':
           git_repo: minishift
