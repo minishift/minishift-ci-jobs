@@ -40,6 +40,7 @@
               trigger-phrase: '.*\[test\].*'
               allow-whitelist-orgs-as-admins: true
               status-context: 'ci.centos.org PR build'
+              cancel-builds-on-update: true
 - scm:
     name: git-scm
     scm:
