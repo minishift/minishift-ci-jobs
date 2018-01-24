@@ -363,3 +363,9 @@
           git_repo: minishift
           ci_project: '{name}'
           timeout: '20m'
+      # PR test for minishift-ci-index.yaml
+      - '{git_repo}-pr':
+          git_repo: minishift-ci-jobs
+          ci_project: '{name}'
+          ci_cmd: '/bin/bash cico_pr_test.sh'
+          timeout: '10m'
