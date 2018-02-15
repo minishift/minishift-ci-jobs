@@ -249,7 +249,7 @@
         - timed: '0 0 * * *'
     publishers:
         - email-ext:
-            recipients: minishift@lists.minishift.io
+            recipients: bgurung@redhat.com,lmohanty@redhat.com,prkumar@redhat.com,gbraad@redhat.com,agajdosi@redhat.com,arout@redhat.com
             content-type: text
             subject: Minishift nightly build $BUILD_NUMBER
             body: "The build has finished. Build URL: $BUILD_URL"
