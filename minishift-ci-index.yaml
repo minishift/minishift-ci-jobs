@@ -193,10 +193,10 @@
     concurrent: true
     properties:
         - github:
-            url: https://github.com/minishift/{git_repo}/
+            url: https://github.com/{git_organization}/{git_repo}/
     scm:
         - git:
-            url: https://{github_user}@github.com/minishift/{git_repo}.git
+            url: https://{github_user}@github.com/{git_organization}/{git_repo}.git
             git-tool: ci-git
             shallow_clone: false
             branches:
@@ -339,6 +339,8 @@
       # Minishift CentOS ISO release build
       - '{git_repo}-release':
           git_repo: minishift-centos-iso
+          github_user: budhrg
+          git_organization: budhrg
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           timeout: '60m'
