@@ -253,7 +253,8 @@
             content-type: text
             subject: Minishift nightly build $BUILD_NUMBER
             body: "The build has finished. Build URL: $BUILD_URL"
-            failure: {notify_build}
+            failure: true
+            disable-publisher: '{disable_publisher}'
     builders:
         - shell: |
               # testing out the cico client
@@ -351,21 +352,21 @@
           ci_cmd: '/bin/bash centos_ci.sh'
           iso_url: 'b2d'
           timeout: '120m'
-          notify_build: true
+          disable_publisher: false
       - '{git_repo}-nightly-{iso_url}':
           git_repo: minishift
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           iso_url: 'minikube'
           timeout: '120m'
-          notify_build: false
+          disable_publisher: true
       - '{git_repo}-nightly-{iso_url}':
           git_repo: minishift
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           iso_url: 'centos'
           timeout: '120m'
-          notify_build: true
+          disable_publisher: false
       # Test build
       - '{git_repo}-test-job':
           git_repo: minishift
