@@ -246,7 +246,7 @@
             branches:
                 - master
     triggers:
-        - timed: '0 0 * * *'
+        - timed: '30 14 * * *'
     publishers:
         - email-ext:
             recipients: bgurung@redhat.com,lmohanty@redhat.com,prkumar@redhat.com,gbraad@redhat.com,agajdosi@redhat.com,arout@redhat.com
