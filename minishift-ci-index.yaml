@@ -205,6 +205,10 @@
             name: RELEASE_VERSION
             default: ""
             description: "Release version to be released (Eg. 1.0.0)"
+        - bool:
+            name: SKIP_INTEGRATION
+            default: false
+            description: "Use only when known failure occur during the release"
     builders:
       - shell: |
             # testing out the cico client
