@@ -354,30 +354,9 @@
           git_repo: minishift
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
-          iso_url: 'b2d'
-          timeout: '180m'
-          disable_publisher: false
-      - '{git_repo}-nightly-{iso_url}':
-          git_repo: minishift
-          ci_project: '{name}'
-          ci_cmd: '/bin/bash centos_ci.sh'
-          iso_url: 'minikube'
-          timeout: '180m'
-          disable_publisher: true
-      - '{git_repo}-nightly-{iso_url}':
-          git_repo: minishift
-          ci_project: '{name}'
-          ci_cmd: '/bin/bash centos_ci.sh'
           iso_url: 'centos'
           timeout: '180m'
           disable_publisher: false
-      - '{git_repo}-nightly-{iso_url}':
-          git_repo: minishift-addons
-          ci_project: '{name}'
-          ci_cmd: '/bin/bash centos_ci.sh'
-          iso_url: 'b2d'
-          timeout: '120m'
-          disable_publisher: true
       # Test build
       - '{git_repo}-test-job':
           git_repo: minishift
