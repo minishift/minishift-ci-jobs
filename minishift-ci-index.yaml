@@ -357,6 +357,13 @@
           iso_url: 'centos'
           timeout: '180m'
           disable_publisher: false
+      - '{git_repo}-nightly-{iso_url}':
+          git_repo: minishift-addons
+          ci_project: '{name}'
+          ci_cmd: '/bin/bash centos_ci.sh'
+          iso_url: 'centos'
+          timeout: '120m'
+          disable_publisher: true
       # Test build
       - '{git_repo}-test-job':
           git_repo: minishift
