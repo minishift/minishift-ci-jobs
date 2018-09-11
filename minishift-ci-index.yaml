@@ -340,7 +340,7 @@
           git_repo: minishift
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
-          timeout: '180m'
+          timeout: '300m'
       # Minishift CentOS ISO release build
       - '{git_repo}-release':
           git_repo: minishift-centos-iso
@@ -355,7 +355,7 @@
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           iso_url: 'centos'
-          timeout: '180m'
+          timeout: '300m'
           disable_publisher: false
       # Test build
       - '{git_repo}-test-job':
