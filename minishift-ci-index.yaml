@@ -318,7 +318,7 @@
           ci_cmd: '/bin/bash centos_ci.sh'
           timeout: '45m'
       - '{git_repo}':
-          git_repo: minishift-b2d-iso
+          git_repo: minishift-fedora-iso
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           timeout: '45m'
@@ -334,7 +334,7 @@
           ci_cmd: '/bin/bash centos_ci.sh'
           timeout: '45m'
       - '{git_repo}-pr':
-          git_repo: minishift-b2d-iso
+          git_repo: minishift-fedora-iso
           ci_project: '{name}'
           ci_cmd: '/bin/bash centos_ci.sh'
           timeout: '45m'
@@ -358,6 +358,14 @@
       # Minishift CentOS ISO release build
       - '{git_repo}-release':
           git_repo: minishift-centos-iso
+          github_user: minishift
+          git_organization: minishift
+          ci_project: '{name}'
+          ci_cmd: '/bin/bash centos_ci.sh'
+          timeout: '60m'
+      # Minishift Fedora ISO release build
+      - '{git_repo}-release':
+          git_repo: minishift-fedora-iso
           github_user: minishift
           git_organization: minishift
           ci_project: '{name}'
