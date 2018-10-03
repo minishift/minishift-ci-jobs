@@ -212,6 +212,10 @@
             name: RELEASE_VERSION
             default: ""
             description: "Release version to be released (Eg. 1.0.0)"
+        - bool:
+            name: SKIP_INTEGRATION_TEST
+            default: false
+            description: "Use only when known failure occur during the release"
     publishers:
         - email-ext:
             recipients: bgurung@redhat.com,lmohanty@redhat.com,prkumar@redhat.com,gbraad@redhat.com,agajdosi@redhat.com,arout@redhat.com
