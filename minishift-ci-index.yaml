@@ -18,6 +18,10 @@
             - text:
                 credential-id: 9d49c592-fdf1-4dbb-82be-4503b17198d8
                 variable: GITHUB_TOKEN
+            - username-password-separated:
+                credential-id: 3633c494-f063-4ae0-963d-9c0f975597ae
+                username: RH_REGISTRY_USERNAME
+                password: RH_REGISTRY_PASSWORD
 
 - trigger:
     name: githubprb
