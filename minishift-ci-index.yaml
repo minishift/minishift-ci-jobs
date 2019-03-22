@@ -37,6 +37,8 @@
                   - agajdosi
                   - amitkrout
                   - robin-owen
+                  - tsedmik
+                  - jsliacan
               cron: '* * * * *'
               github-hooks: true
               permit-all: false
