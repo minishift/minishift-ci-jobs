@@ -310,6 +310,49 @@
       - shell: |
               echo "Job Triggered successfully."
 
+# Temporary template for CodeReady containers till we get a new account from centos ci
+- job-template:
+    name: 'codeready-{git_repo}-pr'
+    description: |
+        Temporary jobs for CodeReady Containers. Managed by JJB do not edit manually!
+    node: '{ci_project}'
+    concurrent: true
+    properties:
+        - github:
+            url: https://github.com/code-ready/{git_repo}/
+    scm:
+        - git-scm:
+            git_url: https://{github_user}@github.com/code-ready/{git_repo}.git
+    triggers:
+        - githubprb
+    builders:
+        - shell: |
+              # testing out the cico client
+              set +e
+              export CICO_API_KEY=$(cat ~/duffy.key)
+              read CICO_hostname CICO_ssid <<< $(cico node get -f value -c ip_address -c comment --retry-count 12)
+
+              if [[ $CICO_hostname != "" ]]; then
+                sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
+                ssh_cmd="ssh $sshopts $CICO_hostname"
+                env > jenkins-env
+                $ssh_cmd yum -y install rsync
+                git rebase origin/${{ghprbTargetBranch}} \
+                && rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:payload \
+                && /usr/bin/timeout {timeout} $ssh_cmd -t "cd payload && {ci_cmd}"
+                rtn_code=$?
+                if [ $rtn_code -eq 0 ]; then
+                  cico node done $CICO_ssid
+                else
+                  # fail mode gives us 12 hrs to debug the machine
+                  curl "http://admin.ci.centos.org:8080/Node/fail?key=$CICO_API_KEY&ssid=$CICO_ssid"
+                fi
+                exit $rtn_code
+              else
+                echo "CICO: Unable to get Node.";
+                exit 1
+              fi
+
 - project:
     name: minishift
     jobs:
@@ -416,3 +459,13 @@
           ci_project: '{name}'
           ci_cmd: '/bin/bash cico_pr_test.sh'
           timeout: '10m'
+
+- project:
+    name: code-ready
+    jobs:
+        # pr test job
+        - 'codeready-{git_repo}-pr':
+            git_repo: crc
+            ci_project: minishift
+            ci_cmd: '/bin/bash centos_ci.sh'
+            timeout: '30m'
