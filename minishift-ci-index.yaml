@@ -22,6 +22,9 @@
                 credential-id: 3633c494-f063-4ae0-963d-9c0f975597ae
                 username: RH_REGISTRY_USERNAME
                 password: RH_REGISTRY_PASSWORD
+            - text:
+                credential-id: minishift_secret_password
+                variable: CRC_BUNDLE_PASSWORD
 
 - trigger:
     name: githubprb
