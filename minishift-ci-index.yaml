@@ -475,4 +475,4 @@
             git_repo: crc
             ci_project: minishift
             ci_cmd: '/bin/bash centos_ci.sh'
-            timeout: '30m'
+            timeout: '90m'
