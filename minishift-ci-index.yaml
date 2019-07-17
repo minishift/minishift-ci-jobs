@@ -95,6 +95,8 @@
               sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
               ssh_cmd="ssh $sshopts $CICO_hostname"
               env > jenkins-env
+              # This is required for the crc pull secret file to be part of slave
+              cp $CRC_PULL_SECRET_FILE .
               $ssh_cmd yum -y install rsync
               rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:payload
               $ssh_cmd -t "cd payload && {ci_cmd}"
@@ -134,6 +136,8 @@
                 sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
                 ssh_cmd="ssh $sshopts $CICO_hostname"
                 env > jenkins-env
+                # This is required for the crc pull secret file to be part of slave
+                cp $CRC_PULL_SECRET_FILE .
                 $ssh_cmd yum -y install rsync
                 git rebase origin/${{ghprbTargetBranch}} \
                 && rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:payload \
@@ -187,6 +191,8 @@
                 sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
                 ssh_cmd="ssh $sshopts $CICO_hostname"
                 env > jenkins-env
+                # This is required for the crc pull secret file to be part of slave
+                cp $CRC_PULL_SECRET_FILE .
                 $ssh_cmd yum -y install rsync
                 rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:payload \
                 && /usr/bin/timeout {timeout} $ssh_cmd -t "cd payload && {ci_cmd}"
@@ -244,6 +250,8 @@
                 sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
                 ssh_cmd="ssh $sshopts $CICO_hostname"
                 env > jenkins-env
+                # This is required for the crc pull secret file to be part of slave
+                cp $CRC_PULL_SECRET_FILE .
                 $ssh_cmd yum -y install rsync
                 rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:payload \
                 && /usr/bin/timeout {timeout} $ssh_cmd -t "cd payload && {ci_cmd}"
@@ -293,6 +301,8 @@
                   sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
                   ssh_cmd="ssh $sshopts $CICO_hostname"
                   env > jenkins-env
+                  # This is required for the crc pull secret file to be part of slave
+                  cp $CRC_PULL_SECRET_FILE .
                   $ssh_cmd yum -y install rsync
                   rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:payload \
                   && /usr/bin/timeout {timeout} $ssh_cmd -t "cd payload && {ci_cmd}"
@@ -343,6 +353,8 @@
                 sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
                 ssh_cmd="ssh $sshopts $CICO_hostname"
                 env > jenkins-env
+                # This is required for the crc pull secret file to be part of slave
+                cp $CRC_PULL_SECRET_FILE .
                 $ssh_cmd yum -y install rsync
                 git rebase origin/${{ghprbTargetBranch}} \
                 && rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:payload \
