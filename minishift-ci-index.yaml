@@ -25,9 +25,9 @@
             - text:
                 credential-id: minishift_secret_password
                 variable: CRC_BUNDLE_PASSWORD
-            - text:
-                credential-id: code_ready_container_pull_secret 
-                variable: CRC_PULL_SECRET
+            - file:
+                credential-id: code_ready_container_pull_secret_file 
+                variable: CRC_PULL_SECRET_FILE
 
 - trigger:
     name: githubprb
