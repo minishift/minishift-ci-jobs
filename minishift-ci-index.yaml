@@ -372,6 +372,48 @@
                 exit 1
               fi
 
+- job-template:
+    name: 'codeready-{git_repo}-master'
+    description: |
+            Temporary master branch job for crc, managed by JJB do not edit manually!!
+    node: "{ci_project}"
+    properties:
+        - github:
+            url: https://github.com/code-ready/{git_repo}/
+    scm:
+        - git:
+            url: https://github.com/code-ready/{git_repo}.git
+            shallow_clone: true
+            branches:
+                - master
+    triggers:
+        - github
+    builders:
+        - shell: |
+            # testing out the cico client
+            set +e
+            export CICO_API_KEY=$(cat ~/duffy.key)
+            read CICO_hostname CICO_ssid <<< $(cico node get -f value -c ip_address -c comment --retry-count 12)
+
+            if [[ $CICO_hostname != "" ]]; then
+              sshopts="-t -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root"
+              ssh_cmd="ssh $sshopts $CICO_hostname"
+              env > jenkins-env
+              # This is required for the crc pull secret file to be part of slave
+              cp $CRC_PULL_SECRET_FILE .
+              $ssh_cmd yum -y install rsync
+              rsync -e "ssh $sshopts" -Ha $(pwd)/ $CICO_hostname:payload
+              $ssh_cmd -t "cd payload && {ci_cmd}"
+              rtn_code=$?
+              cico node done $CICO_ssid
+              if [[ $rtn_code -eq 124 ]]; then
+                echo "BUILD TIMEOUT";
+              fi
+              exit $rtn_code
+            else
+              echo "CICO: Unable to get Node.";
+              exit 1
+            fi
 - project:
     name: minishift
     jobs:
@@ -484,6 +526,11 @@
     jobs:
         # pr test job
         - 'codeready-{git_repo}-pr':
+            git_repo: crc
+            ci_project: minishift
+            ci_cmd: '/bin/bash centos_ci.sh'
+            timeout: '90m'
+        - 'codeready-{git_repo}-master':
             git_repo: crc
             ci_project: minishift
             ci_cmd: '/bin/bash centos_ci.sh'
