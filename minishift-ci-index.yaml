@@ -39,10 +39,9 @@
                   - gbraad
                   - anjannath
                   - robin-owen
-                  - tsedmik
                   - jsliacan
                   - cfergeau
-                  - zeenix
+                  - guillaumerose
               cron: '* * * * *'
               github-hooks: true
               permit-all: false
