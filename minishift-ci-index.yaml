@@ -78,7 +78,7 @@
         - github
     publishers:
         - email-ext:
-            recipients: lmohanty@redhat.com,prkumar@redhat.com,gbraad@redhat.com,jsliacan@redhat.com,tsedmik@redhat.com
+            recipients: prkumar@redhat.com,gbraad@redhat.com,jsliacan@redhat.com
             content-type: text
             subject: Minishift master build $BUILD_NUMBER failed
             body: "The build has failed. Check the build URL for failure logs: $BUILD_URL"
@@ -233,7 +233,7 @@
             description: "Use only when known failure occur during the release"
     publishers:
         - email-ext:
-            recipients: lmohanty@redhat.com,prkumar@redhat.com,gbraad@redhat.com,jsliacan@redhat.com,tsedmik@redhat.com
+            recipients: prkumar@redhat.com,gbraad@redhat.com,jsliacan@redhat.com
             content-type: text
             subject: Minishift release build $BUILD_NUMBER failed
             body: "The build has failed. Check the build URL for failure logs: $BUILD_URL"
@@ -283,7 +283,7 @@
         - timed: 'H 0 * * *'
     publishers:
         - email-ext:
-            recipients: lmohanty@redhat.com,prkumar@redhat.com,gbraad@redhat.com,jsliacan@redhat.com,tsedmik@redhat.com
+            recipients: prkumar@redhat.com,gbraad@redhat.com,jsliacan@redhat.com
             content-type: text
             subject: Minishift nightly build $BUILD_NUMBER failed
             body: "The build has failed. Check the build URL for failure logs: $BUILD_URL"
