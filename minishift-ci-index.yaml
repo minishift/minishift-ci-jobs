@@ -42,6 +42,7 @@
                   - jsliacan
                   - cfergeau
                   - guillaumerose
+                  - adrianriobo
               cron: '* * * * *'
               github-hooks: true
               permit-all: false
